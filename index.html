@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 5 Spotify España | Cultura</title>
+
+<style>
+:root {
+  --bg: #10111a;
+  --card: #191b28;
+  --card2: #222437;
+  --text: #f5f5fa;
+  --muted: #a1a4b8;
+  --accent: #a78bfa;
+  --line: #303247;
+  --green: #1ed760;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 16px;
+  background: transparent;
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.country {
+  background: var(--card2);
+  color: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.section-label {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.chart-date {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.list {
+  display: grid;
+  gap: 9px;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 11px;
+  transition: .2s ease;
+  min-width: 0;
+}
+
+.song:hover {
+  background: var(--card2);
+  transform: translateY(-1px);
+}
+
+.position {
+  width: 25px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 19px;
+  font-weight: 800;
+  flex: none;
+}
+
+.cover {
+  width: 58px;
+  height: 58px;
+  border-radius: 9px;
+  overflow: hidden;
+  background: linear-gradient(135deg,#31245e,#9b72ed);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  flex: none;
+  color: white;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.song-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.song-title {
+  font-size: 14px;
+  font-weight: 750;
+  margin-bottom: 3px;
+}
+
+.artist {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.song-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.action {
+  border: 1px solid var(--line);
+  background: #292b40;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 9px;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.action:hover { filter: brightness(1.2); }
+
+.spotify { color: var(--green); }
+
+.favorite {
+  color: #ff8fb1;
+  font-size: 17px;
+  padding: 5px 8px;
+}
+
+.favorite.active {
+  background: #46283c;
+  border-color: #a34c79;
+}
+
+.footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.count {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.source {
+  margin-top: 13px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.source a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media(max-width: 550px) {
+  body { padding: 10px; }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .song {
+    gap: 9px;
+    padding: 9px;
+  }
+
+  .cover {
+    width: 48px;
+    height: 48px;
+  }
+
+  .song-actions { gap: 4px; }
+
+  .action {
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+
+  .position {
+    width: 19px;
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="wrap">
+
+  <header class="header">
+    <div>
+      <h1>Top 5 canciones</h1>
+      <div class="subtitle">
+        Los cinco temas más escuchados en Spotify España
+      </div>
+    </div>
+
+    <div class="country">🇪🇸 España</div>
+  </header>
+
+  <div class="section-header">
+    <div class="section-label">Ranking Spotify España</div>
+    <div class="chart-date">Clasificación · 12 noviembre 2026</div>
+  </div>
+
+  <div class="list" id="ranking"></div>
+
+  <div class="footer">
+    <span>Descubre las canciones y escucha tus favoritas.</span>
+    <span class="count" id="favoriteCount">0 favoritas</span>
+  </div>
+
+  <div class="source">
+    Fuente del ranking:
+    <a href="https://www.soundcharts.com/es/charts/spotify/spain"
+       target="_blank" rel="noopener">
+      Spotify España · Soundcharts ↗
+    </a>
+    <br>
+    Las posiciones corresponden a la clasificación consultada del 12 de noviembre de 2026.
+  </div>
+
+</main>
+
+<script>
+const songs = [
+  {
+    title: "DOGGY",
+    artist: "La Pantera, Quevedo",
+    search: "DOGGY La Pantera Quevedo"
+  },
+  {
+    title: "RETRICA",
+    artist: "Lucho RK",
+    search: "RETRICA Lucho RK"
+  },
+  {
+    title: "CONTIGO",
+    artist: "Lucho RK",
+    search: "CONTIGO Lucho RK"
+  },
+  {
+    title: "BbY WOW",
+    artist: "KAROL G, Judeline, rusowsky",
+    search: "BbY WOW KAROL G Judeline rusowsky"
+  },
+  {
+    title: "Jukiar",
+    artist: "Clarent",
+    search: "Jukiar Clarent"
+  }
+];
+
+const ranking = document.querySelector("#ranking");
+const favoriteCount = document.querySelector("#favoriteCount");
+
+let favorites = new Set();
+
+function updateFavorites() {
+  const count = favorites.size;
+
+  favoriteCount.textContent =
+    count + (count === 1 ? " favorita" : " favoritas");
+}
+
+function render() {
+  ranking.innerHTML = songs.map((song, index) => {
+
+    const id = String(index);
+    const isFavorite = favorites.has(id);
+
+    const spotifyUrl =
+      "https://open.spotify.com/search/" +
+      encodeURIComponent(song.search);
+
+    const youtubeUrl =
+      "https://www.youtube.com/results?search_query=" +
+      encodeURIComponent(song.search);
+
+    return `
+      <article class="song">
+
+        <div class="position">${index + 1}</div>
+
+        <div class="cover" id="cover-${index}">
+          ♪
+        </div>
+
+        <div class="song-info">
+          <div class="song-title">${song.title}</div>
+          <div class="artist">${song.artist}</div>
+        </div>
+
+        <div class="song-actions">
+
+          <a class="action spotify"
+             href="${spotifyUrl}"
+             target="_blank"
+             rel="noopener">
+            Spotify ↗
+          </a>
+
+          <a class="action"
+             href="${youtubeUrl}"
+             target="_blank"
+             rel="noopener">
+            YouTube ↗
+          </a>
+
+          <button
+            class="action favorite ${isFavorite ? "active" : ""}"
+            data-id="${id}"
+            aria-label="Marcar como favorita"
+            aria-pressed="${isFavorite}">
+            ${isFavorite ? "♥" : "♡"}
+          </button>
+
+        </div>
+
+      </article>
+    `;
+  }).join("");
+
+  updateFavorites();
+}
+
+async function loadCovers() {
+
+  for (let index = 0; index < songs.length; index++) {
+
+    const song = songs[index];
+    const cover = document.querySelector(`#cover-${index}`);
+
+    try {
+      const url =
+        "https://itunes.apple.com/search?term=" +
+        encodeURIComponent(song.search) +
+        "&entity=song&limit=10&country=ES";
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!data.results || !data.results.length) {
+        continue;
+      }
+
+      const normalizedTitle = song.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+
+      const normalizedArtist = song.artist
+        .toLowerCase()
+        .split(",")[0]
+        .trim();
+
+      const match = data.results.find(item => {
+        const title = (item.trackName || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "");
+
+        const artist = (item.artistName || "").toLowerCase();
+
+        return title.includes(normalizedTitle) &&
+               artist.includes(normalizedArtist);
+      }) || data.results[0];
+
+      if (match.artworkUrl100) {
+        cover.innerHTML = `
+          <img
+            src="${match.artworkUrl100}"
+            alt="Portada de ${song.title}"
+            loading="lazy"
+          >
+        `;
+      }
+
+    } catch (error) {
+      console.warn("No se pudo cargar la portada:", song.title);
+    }
+  }
+}
+
+ranking.addEventListener("click", event => {
+
+  const button = event.target.closest(".favorite");
+
+  if (!button) return;
+
+  const id = button.dataset.id;
+
+  if (favorites.has(id)) {
+    favorites.delete(id);
+  } else {
+    favorites.add(id);
+  }
+
+  render();
+});
+
+render();
+loadCovers();
+</script>
+
+</body>
+</html>
